@@ -6,7 +6,7 @@
   margin: 2px 0 5px;
 }
 .vp-toast-wrapper {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
