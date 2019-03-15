@@ -1,7 +1,4 @@
-body {
-  font-family: Helvetica, Verdana, Arial, sans-serif;
-}
-.font-bold.mb-5 {
+.vp-toast-wrapper .font-bold.mb-5 {
   font-weight: bold;
   margin: 2px 0 5px;
 }
