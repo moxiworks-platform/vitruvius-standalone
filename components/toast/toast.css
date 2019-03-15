@@ -51,7 +51,7 @@
 }
 
 .vp-toast.show {
-  display: flex;
+  display: flex !important;
   -webkit-animation: showtoast 2s;
   -moz-animation: showtoast 2s;
   -o-animation: showtoast 2s;
