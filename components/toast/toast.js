@@ -69,12 +69,12 @@ var Toast = (function() {
           var messageDiv = document.createElement('div');
           var header = document.createElement('div');
           var message = document.createElement('p');
-          icon.className = 'icon-check-circle';
+          icon.className = 'v-icon-check-circle';
 
           if (options.type === 'info') {
-            icon.className = 'icon-info-circle info';
+            icon.className = 'v-icon-info-circle info';
           } else if (options.type === 'error') {
-            icon.className = 'icon-info-circle error';
+            icon.className = 'v-icon-info-circle error';
           } // iconDiv.className = icon;
 
 
