@@ -1,0 +1,70 @@
+/*************************************************************************************
+* Input Elements
+************************************************************************************/
+
+.vp-input-container {
+  box-sizing: border-box;
+  position: relative;
+  min-width: 100%;
+  padding: 10px;
+  height: 46px;
+  max-height: 46px;
+  min-height: 46px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #bcc0c2;
+}
+
+.vp-input-container input {
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  margin: 0;
+  border-width: 0;
+  outline: none;
+  width: 100%;
+}
+
+.vp-input-container input:focus {
+  outline: none;
+}
+
+.vp-input-container.dark {
+  border-width: 1px;
+  border-color: #212e35;
+}
+
+.vp-input-container label {
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  color: #a6abae;
+  display: block;
+  cursor: text;
+  transition: transform 0.2s ease-out, color 0.2s ease-out;
+  transform-origin: 0% 100%;
+  text-align: initial;
+  padding: 0 5px;
+}
+
+.vp-input-container label.active {
+  color: #636c71;
+  transform: translateY(-20px) scale(0.8);
+  transform-origin: 0 0;
+  background: #fff;
+}
+
+.vp-input-container i {
+  position: absolute;
+  color: #666;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+}
+
+.vp-input-container .v-icon-close-circle {
+  left: unset;
+  right: 10px;
+  cursor: pointer;
+  display: none;
+}
