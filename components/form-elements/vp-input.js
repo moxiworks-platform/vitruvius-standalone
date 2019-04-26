@@ -1,1 +1,106 @@
-!function(){var t=setInterval(function(){window.riot&&(clearInterval(t),riot.tag2("vp-input",'<div class="vp-input-container"> <i data-icontype="left" class="{this.opts.iconleft}" if="{this.opts.iconleft}"></i> <i class="v-icon-close-circle" if="{this.opts.iconclose}" onclick="{clearField}"></i> <label riot-style="{checkLabelStyles()}" onclick="{focusOnInput}">{this.opts.label}</label> <input autocomplete="off" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" riot-value="{this.opts.value}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}"> </div>',"","",function(t){var e=this;this.noop=function(){}.bind(this),this.oneTimeValueSet=function(){e.oneTimeValueSet=e.noop,e.hidePlaceHolder()}.bind(this),this.showHideClearButton=function(){var t=e.root.querySelector(".v-icon-close-circle"),o=e.root.querySelector("input");t&&o&&""===o.value?t.style.display="none":t&&(t.style.display="block"),""===o.value&&o.blur(),e.hideLabel(o)}.bind(this),this.returnClass=function(){var t="";return e.opts.iconleft&&(t+="padding-left: 30px; "),e.opts.iconClose&&(t+="padding-right: 30px; "),e.opts.color&&(t+="color: ".concat(e.opts.color,"; ")),t}.bind(this),this.clearField=function(){e.root.querySelector("input").value="",e.showHideClearButton()}.bind(this),this.hidePlaceHolder=function(){e.root.querySelector("label").classList.add("active"),e.root.querySelector(".vp-input-container").classList.add("dark")}.bind(this),this.showPlaceHolder=function(){var t=e.root.querySelector("input");e.hideLabel(t)}.bind(this),this.hideLabel=function(t){""===t.value&&(e.root.querySelector("label").classList.remove("active"),e.root.querySelector(".vp-input-container").classList.remove("dark"))}.bind(this),this.checkLabelStyles=function(){var t="";return e.opts.iconleft&&(t+="left: 40px; "),e.opts.background&&(t+="background: ".concat(e.opts.background,"; ")),e.opts.color&&(t+="color: ".concat(e.opts.color,"; ")),e.opts.value&&""!==e.opts.value&&setTimeout(function(){e.oneTimeValueSet()}),t}.bind(this),this.focusOnInput=function(){e.root.querySelector("input")&&e.root.querySelector("input").focus()}.bind(this)}),riot.mount("vp-input"))},50)}();
+(function () {
+  var vpInputInterval = setInterval(function () {
+    if (window.riot) {
+      clearInterval(vpInputInterval);
+      riot.tag2('vp-input', '<div class="vp-input-container"> <i data-icontype="left" class="{this.opts.iconleft}" if="{this.opts.iconleft}"></i> <i class="v-icon-close-circle" if="{this.opts.iconclose}" onclick="{clearField}"></i> <label riot-style="{checkLabelStyles()}" onclick="{focusOnInput}">{this.opts.label}</label> <input autocomplete="off" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" riot-value="{this.opts.value}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}"> </div>', '', '', function (opts) {
+        var self = this;
+
+        this.noop = function () {}.bind(this);
+
+        this.oneTimeValueSet = function () {
+          self.oneTimeValueSet = self.noop;
+          self.hidePlaceHolder();
+        }.bind(this);
+
+        this.showHideClearButton = function (e) {
+          if (e.which === 9) return false;
+          var closeElem = self.root.querySelector('.v-icon-close-circle');
+          var inputElem = self.root.querySelector('input');
+
+          if (closeElem && inputElem && inputElem.value === '') {
+            closeElem.style.display = 'none';
+          } else if (closeElem) {
+            closeElem.style.display = 'block';
+          }
+
+          if (inputElem.value === '') {
+            inputElem.blur();
+          }
+
+          self.hideLabel(inputElem);
+        }.bind(this);
+
+        this.returnClass = function () {
+          var str = '';
+
+          if (self.opts.iconleft) {
+            str += 'padding-left: 30px; ';
+          }
+
+          if (self.opts.iconClose) {
+            str += 'padding-right: 30px; ';
+          }
+
+          if (self.opts.color) {
+            str += "color: ".concat(self.opts.color, "; ");
+          }
+
+          return str;
+        }.bind(this);
+
+        this.clearField = function () {
+          self.root.querySelector('input').value = '';
+          self.showHideClearButton();
+        }.bind(this);
+
+        this.hidePlaceHolder = function () {
+          self.root.querySelector('label').classList.add('active');
+          self.root.querySelector('.vp-input-container').classList.add('dark');
+        }.bind(this);
+
+        this.showPlaceHolder = function () {
+          var inputElem = self.root.querySelector('input');
+          self.hideLabel(inputElem);
+        }.bind(this);
+
+        this.hideLabel = function (el) {
+          if (el.value === '') {
+            self.root.querySelector('label').classList.remove('active');
+            self.root.querySelector('.vp-input-container').classList.remove('dark');
+          }
+        }.bind(this);
+
+        this.checkLabelStyles = function () {
+          var str = '';
+
+          if (self.opts.iconleft) {
+            str += "left: 40px; ";
+          }
+
+          if (self.opts.background) {
+            str += "background: ".concat(self.opts.background, "; ");
+          }
+
+          if (self.opts.color) {
+            str += "color: ".concat(self.opts.color, "; ");
+          }
+
+          if (self.opts.value && self.opts.value !== '') {
+            setTimeout(function () {
+              self.oneTimeValueSet();
+            });
+          }
+
+          return str;
+        }.bind(this);
+
+        this.focusOnInput = function () {
+          if (self.root.querySelector('input')) {
+            self.root.querySelector('input').focus();
+          }
+        }.bind(this);
+      });
+      riot.mount('vp-input');
+    }
+  }, 10);
+})();
