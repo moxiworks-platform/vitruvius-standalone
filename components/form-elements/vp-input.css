@@ -11,21 +11,29 @@
   max-height: 46px;
   min-height: 46px;
   border-width: 1px;
-  border-style: solid;
   border-color: #bcc0c2;
+  border-style: solid;
 }
 
-.vp-input-container input {
+.vp-input-container.textarea {
+  height: unset;
+  min-height: unset;
+  max-height: unset;
+}
+
+.vp-input-container input,
+.vp-input-container textarea {
   background: transparent;
+  width: 100%;
   font-family: inherit;
   font-size: 16px;
   margin: 0;
   border-width: 0;
   outline: none;
-  width: 100%;
 }
 
-.vp-input-container input:focus {
+.vp-input-container input:focus,
+.vp-input-container textarea:focus {
   outline: none;
 }
 
@@ -36,7 +44,7 @@
 
 .vp-input-container label {
   position: absolute;
-  top: 13px;
+  top: 14px;
   left: 10px;
   color: #a6abae;
   display: block;
@@ -67,4 +75,11 @@
   right: 10px;
   cursor: pointer;
   display: none;
+}
+
+.vp-input-container input:focus,
+.vp-input-container textarea:focus,
+.vp-input-container input:not(:placeholder-shown),
+.vp-input-container textarea:not(:placeholder-shown){
+  padding-top: 4px;
 }

@@ -1,8 +1,15 @@
 (function () {
-  var vpInputInterval = setInterval(function () {
+  var riotCounter = 0;
+  var riotInterval = setInterval(function () {
+    riotCounter++;
+
+    if (riotCounter >= 240) {
+      clearInterval(riotInterval);
+    }
+
     if (window.riot) {
-      clearInterval(vpInputInterval);
-      riot.tag2('vp-input', '<div class="vp-input-container"> <i data-icontype="left" class="{this.opts.iconleft}" if="{this.opts.iconleft}"></i> <i class="v-icon-close-circle" if="{this.opts.iconclose}" onclick="{clearField}"></i> <label riot-style="{checkLabelStyles()}" onclick="{focusOnInput}">{this.opts.label}</label> <input autocomplete="off" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" riot-value="{this.opts.value}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}"> </div>', '', '', function (opts) {
+      clearInterval(riotInterval);
+      riot.tag2('vp-input', '<div class="{returnBaseContainerClass()}"> <i data-icontype="left" class="{this.opts.iconleft}" if="{this.opts.iconleft}"></i> <i class="v-icon-close-circle" if="{this.opts.iconclose}" onclick="{clearField}"></i> <label riot-style="{checkLabelStyles()}" onclick="{focusOnInput}">{this.opts.label}</label> <input if="{!this.opts.textarea}" autocomplete="off" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" riot-value="{this.opts.value}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}"> <textarea if="{this.opts.textarea}" autocomplete="off" rows="{this.opts.rows}" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" riot-value="{this.opts.value}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}"></textarea> </div>', '', '', function (opts) {
         var self = this;
 
         this.noop = function () {}.bind(this);
@@ -12,10 +19,16 @@
           self.hidePlaceHolder();
         }.bind(this);
 
+        this.returnBaseContainerClass = function () {
+          var str = "vp-input-container";
+          if (self.opts.textarea) str += " textarea";
+          return str;
+        }.bind(this);
+
         this.showHideClearButton = function (e) {
-          if (e.which === 9) return false;
+          if (e.which === 9 || e.which === 16) return false;
           var closeElem = self.root.querySelector('.v-icon-close-circle');
-          var inputElem = self.root.querySelector('input');
+          var inputElem = self.opts.textarea ? self.root.querySelector('textarea') : self.root.querySelector('input');
 
           if (closeElem && inputElem && inputElem.value === '') {
             closeElem.style.display = 'none';
@@ -59,7 +72,7 @@
         }.bind(this);
 
         this.showPlaceHolder = function () {
-          var inputElem = self.root.querySelector('input');
+          var inputElem = self.opts.textarea ? self.root.querySelector('textarea') : self.root.querySelector('input');
           self.hideLabel(inputElem);
         }.bind(this);
 
@@ -97,10 +110,12 @@
         this.focusOnInput = function () {
           if (self.root.querySelector('input')) {
             self.root.querySelector('input').focus();
+          } else if (self.root.querySelector('textarea')) {
+            self.root.querySelector('textarea').focus();
           }
         }.bind(this);
       });
       riot.mount('vp-input');
     }
-  }, 10);
+  }, 500);
 })();
