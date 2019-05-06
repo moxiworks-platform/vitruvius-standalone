@@ -53,6 +53,7 @@
             str += "color: ".concat(self.opts.color, "; ");
           }
 
+          str = "padding: 0; ".concat(str);
           return str;
         }.bind(this);
 
