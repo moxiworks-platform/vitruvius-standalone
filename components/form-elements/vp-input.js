@@ -15,7 +15,6 @@
         this.noop = function () {}.bind(this);
 
         this.oneTimeValueSet = function () {
-          console.log(self.opts.pattern);
           self.oneTimeValueSet = self.noop;
           self.hidePlaceHolder();
         }.bind(this);
