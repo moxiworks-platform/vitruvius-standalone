@@ -9,12 +9,13 @@
 
     if (window.riot) {
       clearInterval(riotInterval);
-      riot.tag2('vp-input', '<div class="{returnBaseContainerClass()}"> <i data-icontype="left" class="{this.opts.iconleft}" if="{this.opts.iconleft}"></i> <i class="v-icon-close-circle" if="{this.opts.iconclose}" onclick="{clearField}"></i> <label riot-style="{checkLabelStyles()}" onclick="{focusOnInput}">{this.opts.label}</label> <input if="{!this.opts.textarea}" autocomplete="off" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" riot-value="{this.opts.value}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}"> <textarea if="{this.opts.textarea}" autocomplete="off" rows="{this.opts.rows}" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" riot-value="{this.opts.value}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}"></textarea> </div>', '', '', function (opts) {
+      riot.tag2('vp-input', '<div class="{returnBaseContainerClass()}"> <i data-icontype="left" class="{this.opts.iconleft}" if="{this.opts.iconleft}"></i> <i class="v-icon-close-circle" if="{this.opts.iconclose}" onclick="{clearField}"></i> <label riot-style="{checkLabelStyles()}" onclick="{focusOnInput}">{this.opts.label}</label> <input if="{!this.opts.textarea}" autocomplete="off" id="{this.opts.id}" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" riot-value="{this.opts.value}" pattern="{this.opts.pattern}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}"> <textarea if="{this.opts.textarea}" autocomplete="off" id="{this.opts.id}" rows="{this.opts.rows}" riot-style="{returnClass()}" type="{this.opts.type}" name="{this.opts.name}" pattern="{this.opts.pattern}" onkeyup="{showHideClearButton}" onfocus="{hidePlaceHolder}" onblur="{showPlaceHolder}">{this.opts.value}</textarea> </div>', '', '', function (opts) {
         var self = this;
 
         this.noop = function () {}.bind(this);
 
         this.oneTimeValueSet = function () {
+          console.log(self.opts.pattern);
           self.oneTimeValueSet = self.noop;
           self.hidePlaceHolder();
         }.bind(this);
@@ -35,12 +36,6 @@
           } else if (closeElem) {
             closeElem.style.display = 'block';
           }
-
-          if (inputElem.value === '') {
-            inputElem.blur();
-          }
-
-          self.hideLabel(inputElem);
         }.bind(this);
 
         this.returnClass = function () {

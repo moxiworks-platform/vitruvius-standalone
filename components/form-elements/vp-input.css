@@ -29,7 +29,11 @@
   font-size: 16px;
   margin: 0;
   border-width: 0;
+  border: 0 !important;		
   outline: none;
+  width: 100%;		
+  padding: 0;		
+  height: initial !important;
 }
 
 .vp-input-container input:focus,
