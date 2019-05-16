@@ -16,9 +16,8 @@
 }
 
 .vp-input-container.textarea {
-  height: unset;
-  min-height: unset;
-  max-height: unset;
+  height: auto;
+  max-height: inherit;
 }
 
 .vp-input-container input,
@@ -30,10 +29,8 @@
   margin: 0;
   border-width: 0;
   border: 0 !important;		
-  outline: none;
-  width: 100%;		
-  padding: 0;		
-  height: initial !important;
+  outline: none;	
+  padding: 0;
 }
 
 .vp-input-container input:focus,
