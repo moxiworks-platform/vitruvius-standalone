@@ -61,6 +61,7 @@
   transform: translateY(-20px) scale(0.8);
   transform-origin: 0 0;
   background: #fff;
+  font-weight: bold;
 }
 
 .vp-input-container i {
